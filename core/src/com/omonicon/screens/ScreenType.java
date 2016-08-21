@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 
 /**
  * Created by Jakov on 8.10.2015..
+ * Screen types revisited.
  */
 public enum ScreenType {
 

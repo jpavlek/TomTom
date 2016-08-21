@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.IntMap;
 
 /**
  * Created by Jakov on 8.10.2015..
+ * Screen manager class
  */
 public final class ScreenManager {
     private static ScreenManager screenManagerInstance;

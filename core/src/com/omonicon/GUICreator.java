@@ -10,6 +10,7 @@ import com.omonicon.screens.ScreenType;
 import com.omonicon.screens.ScreenManager;
 /**
  * Created by Jakov on 11.10.2015..
+ * Enables easier GUI creating
  */
 public class GUICreator {
 

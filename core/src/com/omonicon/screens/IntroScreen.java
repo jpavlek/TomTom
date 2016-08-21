@@ -34,7 +34,7 @@ class IntroScreen implements Screen {
 	private ScreenType  currentScreenShown;
 	private ScreenType  nextScreenToShow = null;
 	private float       showTimeSec = 2.0f;
-	private Color		mBgColor = Color.WHITE;;
+	private Color		mBgColor = Color.WHITE;
 
 	public IntroScreen(String imageToShow, ScreenType currentScreenType) {
 		mBatch = new SpriteBatch();

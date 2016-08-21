@@ -14,6 +14,7 @@ import com.omonicon.screens.tasks.ScreenHideTask;
 
 /**
  * Created by Jakov on 8.10.2015.
+ * Defines splash screen class.
  */
 public class SplashScreen extends AbstractScreen {
 

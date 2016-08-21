@@ -6,6 +6,7 @@ import com.omonicon.screens.ScreenManager;
 
 /**
  * Created by Jakov on 8.10.2015..
+ * Hides screen on timer.
  */
 public class ScreenHideTask extends Timer.Task {
 
