@@ -1,5 +1,6 @@
 package com.omonicon.game.world;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -19,13 +20,13 @@ public class WorldController {
     }
 
     private static final long LONG_JUMP_PRESS   = 150L;
-    private static final float GRAVITY          = -9.81f;
-    private static final float MAX_JUMP_SPEED   = 28f;
+    private static final float GRAVITY          = -19.81f;
+    private static final float MAX_JUMP_SPEED   = 20.0f;
     private static final float DAMP             = 0.9f;
-    private static final float MAX_VEL          = 48f;
+    private static final float MAX_VEL          = 20.0f;
 
-    private World world;
-    private Tom tom;
+    private World   world;
+    private Tom     tom;
     private long    jumpPressTime;
     private boolean isJumpPressed;
     private boolean grounded = false;
@@ -83,6 +84,7 @@ public class WorldController {
     }
 
     private void checkCollisionWithBlocks(float delta) {
+        Gdx.app.log("WorldController", "checkCollisionWithBlocks");
         // scale velocity to frame units
         tom.getVelocity().scl(delta);
 
@@ -134,10 +136,12 @@ public class WorldController {
         // the same thing but on the vertical Y axis
         startX = (int) tom.getBounds().x;
         endX = (int) (tom.getBounds().x + tom.getBounds().width);
-        if (tom.getVelocity().y < 0) {
+        if (tom.getVelocity().y < 0.0f) {
             startY = endY = (int) Math.floor(tom.getBounds().y + tom.getVelocity().y);
+            Gdx.app.log("Tom", "- Tom check collision log y: "+ startY);
         } else {
             startY = endY = (int) Math.floor(tom.getBounds().y + tom.getBounds().height + tom.getVelocity().y);
+            Gdx.app.log("Tom", "+ Tom check collision log y: "+ startY);
         }
 
         populateCollidableBlocks(startX, startY, endX, endY);
@@ -147,10 +151,12 @@ public class WorldController {
         for (Block block : collidable) {
             if (block == null) continue;
             if (tomRect.overlaps(block.getBounds())) {
-                if (tom.getVelocity().y < 0) {
+                Gdx.app.log("Tom", "Collision detected");
+                if (tom.getVelocity().y < 0.0f) {
                     grounded = true;
                 }
-                tom.setVelocityY(0);
+                tom.setVelocityY(0.0f);
+                tom.setAccelerationY(0.0f);
                 world.getCollisionRects().add(block.getBounds());
                 break;
             }
@@ -168,6 +174,7 @@ public class WorldController {
     }
 
     public void processInput() {
+        Gdx.app.log("WorldController", "processInput");
         boolean leftPressed = keys.get(Keys.LEFT);
         boolean rightPressed = keys.get(Keys.RIGHT);
         boolean jumpPressed = keys.get(Keys.JUMP);
@@ -217,6 +224,7 @@ public class WorldController {
     }
 
     public void update(float delta) {
+        Gdx.app.log("WorldController", "update");
         float maxDelta = 1.0f/30.0f;
         if (delta>maxDelta) {
             delta = Math.min(delta, maxDelta);
@@ -230,16 +238,17 @@ public class WorldController {
         }
 
         //apply gravity
-        //tom.setAccelerationY(GRAVITY);
-        //tom.getAcceleration().scl(delta);
-        //tom.getVelocity().add(tom.getAcceleration().x, tom.getAcceleration().y);
+        //TODO: acceleration handling
+        tom.getAcceleration().y = GRAVITY;
+        tom.getAcceleration().scl(delta);
+        tom.getVelocity().add(tom.getAcceleration().x, tom.getAcceleration().y);
 
         // checking collisions with the surrounding blocks depending on Bob's velocity
         checkCollisionWithBlocks(delta);
 
         Vector2 velocity = tom.getVelocity();
 
-        if (tom.getAcceleration().x == 0) {
+        if (tom.getAcceleration().x == 0.0f) {
             tom.getVelocity().x *= DAMP;
         }
 

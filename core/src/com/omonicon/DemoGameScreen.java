@@ -41,7 +41,7 @@ public class DemoGameScreen extends DemoAbstractScreen {
 
     @Override
     public void hide () {
-        Gdx.app.debug("Cuboc", "dispose game screen");
+        Gdx.app.log("Cuboc", "dispose game screen");
 
     }
 }

@@ -45,25 +45,25 @@ public class WorldRenderer implements Disposable {
 
     ShapeRenderer debugRenderer = new ShapeRenderer();
 
-
     //animations parameters
     private static final int        FRAME_COLS = 5;
     private static final int        FRAME_ROWS = 4;
 
     //private Sprite                backGroundSprite;
     private Texture tomSpriteAnimTexture;
-    private TextureRegion[]         walkFrames;
-    private TextureRegion[]         walkFrontFrames;
-    private TextureRegion[]         walkLeftFrames;
-    private TextureRegion[]         walkBackFrames;
-    private TextureRegion[]         walkRightFrames;
-    private TextureRegion currentFrame;
-    private Animation walkAnimation;
-    private Animation walkFrontAnimation;
-    private Animation walkLeftAnimation;
-    private Animation walkBackAnimation;
-    private Animation walkRightAnimation;
-    float stateTime;
+    private TextureRegion[] walkFrames;
+    private TextureRegion[] walkFrontFrames;
+    private TextureRegion[] walkLeftFrames;
+    private TextureRegion[] walkBackFrames;
+    private TextureRegion[] walkRightFrames;
+    private TextureRegion   currentFrame;
+    private Animation       walkAnimation;
+    private Animation       walkFrontAnimation;
+    private Animation       walkLeftAnimation;
+    private Animation       walkBackAnimation;
+    private Animation       walkRightAnimation;
+    float                   stateTime;
+
     Vector3 lerpTarget = new Vector3();
 
     public WorldRenderer(World world) {

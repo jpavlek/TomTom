@@ -97,7 +97,7 @@ public class DemoMapRenderer {
             }
         }
 
-        Gdx.app.debug("Cubocy", "blocks created");
+        Gdx.app.log("Cubocy", "blocks created");
     }
 
     private void createAnimations () {

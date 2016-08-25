@@ -46,7 +46,7 @@ public class DemoIntroScreen extends DemoAbstractScreen {
 
     @Override
     public void hide () {
-        Gdx.app.debug("Cubocy", "dispose intro");
+        Gdx.app.log("Cubocy", "dispose intro");
         batch.dispose();
         intro.getTexture().dispose();
     }

@@ -1,6 +1,7 @@
 package com.omonicon.game.world;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.omonicon.physics.RigidBody;
@@ -106,13 +107,17 @@ public class GameCharacter {
     }
 
     public void update(float delta) {
-        Vector2 acceleration = getAcceleration().cpy();
-        Vector2 velocity = getVelocity().cpy();
-        Vector2 position = getPosition().cpy();
+        Gdx.app.log("GameCharacter", "update");
+        Vector2 acceleration    = getAcceleration().cpy();
+        Vector2 velocity        = getVelocity().cpy();
+        Vector2 position        = getPosition().cpy();
 
-        Vector2 deltaPosition = velocity.mulAdd(acceleration, delta/2f).scl(delta);
-        Vector2 deltaVelocity = acceleration.scl(delta);
-        float maxDelta = 4.0f;
+        Vector2 deltaPosition   = velocity.mulAdd(acceleration, delta/2f).scl(delta);
+        Vector2 deltaVelocity   = acceleration.scl(delta);
+        //Gdx.app.log("GameCharacter", "update acc: acceleration, velocity");
+        //Gdx.app.log("GameCharacter", "delta acc: " + deltaPosition + "deltaVel: "+ deltaVelocity);
+        float maxDelta = 12.0f;
+
         if (deltaPosition.x > maxDelta) {
             deltaPosition.x = maxDelta;
         }

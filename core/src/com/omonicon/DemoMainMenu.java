@@ -46,7 +46,7 @@ public class DemoMainMenu extends DemoAbstractScreen {
 
     @Override
     public void hide () {
-        Gdx.app.debug("DemoPlatformer", "dispose main menu");
+        Gdx.app.log("DemoPlatformer", "dispose main menu");
         batch.dispose();
         title.getTexture().dispose();
     }
